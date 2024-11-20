@@ -1,9 +1,9 @@
-import MainComponent from '../components/Main/MainComponent';
+import Main from '../components/Main/Main';
 
 export default function MainPageContainer(props) {
   return (
     <>
-      <MainComponent />
+      <Main />
     </>
   );
 }
