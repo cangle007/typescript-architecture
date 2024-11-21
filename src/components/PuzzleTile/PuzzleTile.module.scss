@@ -1,0 +1,27 @@
+.root {
+  width: 1000px;
+  //border: 1px solid blue;
+}
+
+.puzzlePhrase {
+  --columns: 4; /* Default number of columns */
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  place-items: center;
+  text-align: center;
+  border-bottom: 2px solid red;
+  font-size: 50px;
+  padding: 10px;
+}
+
+.puzzleLetterOutline {
+  height: 50px;
+  width: 50px;
+  border-bottom: 5px solid black;
+  color: white;
+
+  &[data-reveal-letter='true'] {
+    color: red; // Color when data-has-letter is true
+  }
+  //border: 1px solid blue;
+}

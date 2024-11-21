@@ -3,31 +3,37 @@ import classNames from 'classnames';
 import styles from './Main.module.scss';
 
 import HangmanDrawing from '../HangmanDrawing/HangmanDrawing';
-import HangmanWord from '../HangmanWord/HangmanWord';
+import PuzzleTile from '../PuzzleTile/PuzzleTile';
 import Keyboard from '../Keyboard/Keyboard';
 
 import words from '../../data/words.json';
 
-type wordToGuestType = string;
+type puzzlePhraseType = string;
+type clickType = string;
 
 const Main = () => {
   const randomWord = (): string => {
     return words[Math.floor(Math.random() * words.length)];
   };
-  const [wordToGuess, setWordToGuess] = useState<wordToGuestType>(randomWord());
+  const [puzzlePhrase, setPuzzlePhrase] = useState<puzzlePhraseType>(
+    randomWord()
+  );
+  const [selectedLetter, setLetter] = useState<clickType>('');
 
   return (
     <div className={classNames(styles.root)}>
       <h1>Hangman Game</h1>
       <div className={classNames(styles.winLose)}>LOSE WIN</div>
-      <p>{wordToGuess}</p>
+      <p>{puzzlePhrase}</p>
+      <p>{'Clicked letter: ' + selectedLetter}</p>
+
       <HangmanDrawing />
-      <HangmanWord />
-      <Keyboard />
+      <PuzzleTile selectedLetter={selectedLetter} puzzlePhrase={puzzlePhrase} />
+      <Keyboard setLetter={setLetter} />
 
       <button
         onClick={() => {
-          setWordToGuess(randomWord());
+          setPuzzlePhrase(randomWord());
         }}
       >
         generate word
