@@ -12,22 +12,40 @@
   place-items: center;
   gap: 12px;
   font-size: 27px;
-  transition: transform 0.3s ease, backdrop-filter 0.3s ease, color 0.3s ease;
   margin: 20px;
-  :hover {
-    transform: scale(1.2); /* Enlarge grid container */
-    backdrop-filter: blur(5px); /* Blur background effect */
-    background: #1b263b; /* Change root background */
-    font-size: 35px;
-  }
-  border: 2px solid white;
-  border-radius: 10px;
+  padding: 10px; /* Add padding to create space for inner content */
+  border-radius: 10px; /* Ensure rounded corners */
+  background: linear-gradient(
+    70deg,
+    #ff99c8,
+    #fcf6bd,
+    #d0f4de,
+    #a9def9,
+    #e4c1f9
+  ); /* Gradient for the border */
+  position: relative;
+}
+
+.border::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: 8px; /* Inner box border-radius */
+  background-color: #0d1b2a; /* Background for inner content */
+  z-index: 1;
+}
+
+.border > * {
+  position: relative;
+  z-index: 2; /* Ensure children are above the pseudo-element */
 }
 
 .letterItem {
   align-content: center;
   text-align: center;
-  //border: 1px solid #4a4e69;
   border: none;
   height: 75px;
   width: 75px;
@@ -46,6 +64,7 @@
   &:hover {
     transform: scale(1.1); /* Enlarge text */
     border: 1px solid white;
+    font-size: 35px;
     text-shadow: -1px -1px 0 #ff99c8, 1px -1px 0 #fcf6bd, -1px 1px 0 #d0f4de,
       1px 1px 0 #a9def9, 2px 2px 2px #e4c1f9; /* Match gradient with shadow */
   }
