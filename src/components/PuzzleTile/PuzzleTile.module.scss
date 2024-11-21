@@ -1,6 +1,5 @@
 .root {
   width: 1000px;
-  //border: 1px solid blue;
 }
 
 .puzzlePhrase {
@@ -23,5 +22,4 @@
   &[data-reveal-letter='true'] {
     color: red; // Color when data-has-letter is true
   }
-  //border: 1px solid blue;
 }

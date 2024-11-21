@@ -12,11 +12,11 @@ type puzzlePhraseType = string;
 type clickType = string;
 
 const Main = () => {
-  const randomWord = (): string => {
+  const generatePhrase = (): string => {
     return words[Math.floor(Math.random() * words.length)];
   };
   const [puzzlePhrase, setPuzzlePhrase] = useState<puzzlePhraseType>(
-    randomWord()
+    generatePhrase()
   );
   const [selectedLetter, setLetter] = useState<clickType>('');
 
@@ -33,7 +33,7 @@ const Main = () => {
 
       <button
         onClick={() => {
-          setPuzzlePhrase(randomWord());
+          setPuzzlePhrase(generatePhrase());
         }}
       >
         generate word
