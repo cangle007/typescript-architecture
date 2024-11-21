@@ -1,14 +1,15 @@
 .root {
+  display: grid;
+  // grid-template-columns: 1fr;
+  // grid-template-rows: auto;
+  height: 100vh; /* Make the container fill the entire viewport height */
+  border: 1px solid;
+  justify-items: center;
+  align-items: center;
   color: red;
-  max-width: '800px';
-  display: 'flex';
-  flex-direction: 'column';
-  gap: '2rem';
-  margin: '0 auto';
-  align-items: 'center';
 }
 
-.winLose {
-  font-size: '2rem';
-  text-align: 'center';
-}
+// .winLose {
+//   font-size: '2rem';
+//   text-align: 'center';
+// }
