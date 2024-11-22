@@ -8,7 +8,10 @@ type propsType = {
 };
 
 const PuzzleTitle: React.FC<propsType> = ({ selectedLetter, puzzlePhrase }) => {
+  //update CSS custom properties dynamically
   const rootRef = useRef<HTMLDivElement>(null);
+
+  //initialize details for puzzle phrase
   const initPuzzleTiles = puzzlePhrase.split('').map((letterform) => ({
     letter: letterform,
     revealLetter: false,
@@ -16,6 +19,7 @@ const PuzzleTitle: React.FC<propsType> = ({ selectedLetter, puzzlePhrase }) => {
 
   const [puzzleTiles, setPuzzleTile] = useState(initPuzzleTiles);
 
+  //update puzzleTiles object
   const revealPuzzleTiles = useCallback((selectedLetter: string) => {
     setPuzzleTile((prevTiles) => {
       return prevTiles.map((tile) => {
@@ -31,6 +35,7 @@ const PuzzleTitle: React.FC<propsType> = ({ selectedLetter, puzzlePhrase }) => {
   }, [selectedLetter, revealPuzzleTiles]);
 
   useEffect(() => {
+    //set --columns as property to create dynamic column through Grid
     if (rootRef.current) {
       rootRef.current.style.setProperty(
         '--columns',

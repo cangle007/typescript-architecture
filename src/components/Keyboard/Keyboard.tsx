@@ -5,9 +5,10 @@ import alphabet from '../../data/alphabet.json';
 
 type propsType = {
   setLetter: (value: string) => void;
+  handleLetterAndGuess: (value: string) => void;
 };
 
-const Keyboard: React.FC<propsType> = ({ setLetter }) => {
+const Keyboard: React.FC<propsType> = ({ setLetter, handleLetterAndGuess }) => {
   return (
     <div className={classNames(styles.root)}>
       <div className={classNames(styles.border)}>
@@ -15,12 +16,13 @@ const Keyboard: React.FC<propsType> = ({ setLetter }) => {
           return (
             <div
               className={classNames(styles.letterItem)}
-              data-value={letter}
+              data-letter={letter}
               key={i}
               onClick={(e) => {
                 const target = e.target as HTMLDivElement; // Cast target to HTMLDivElement
-                const value = target.getAttribute('data-value') ?? '';
-                setLetter(value);
+                const letterValue = target.getAttribute('data-letter') ?? '';
+                handleLetterAndGuess(letterValue);
+                //setLetter(letterValue);
               }}
             >
               {letter}
