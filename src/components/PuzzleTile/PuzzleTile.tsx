@@ -1,46 +1,23 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import styles from './PuzzleTile.module.scss';
 
 type propsType = {
-  selectedLetter: string;
   puzzlePhrase: string;
+  puzzleTiles: {
+    letter: string;
+    revealLetter: boolean;
+  }[];
 };
 
-const PuzzleTitle: React.FC<propsType> = ({ selectedLetter, puzzlePhrase }) => {
+const PuzzleTitle: React.FC<propsType> = ({ puzzlePhrase, puzzleTiles }) => {
   //update CSS custom properties dynamically
   const rootRef = useRef<HTMLDivElement>(null);
 
-  //initialize details for puzzle phrase
-  const initPuzzleTiles = puzzlePhrase.split('').map((letterform) => ({
-    letter: letterform,
-    revealLetter: false,
-  }));
-
-  const [puzzleTiles, setPuzzleTile] = useState(initPuzzleTiles);
-
-  //update puzzleTiles object
-  const revealPuzzleTiles = useCallback((selectedLetter: string) => {
-    setPuzzleTile((prevTiles) => {
-      return prevTiles.map((tile) => {
-        return tile.letter === selectedLetter
-          ? { ...tile, revealLetter: true }
-          : tile;
-      });
-    });
-  }, []);
-
+  //set --columns as property to create dynamic column through Grid
   useEffect(() => {
-    revealPuzzleTiles(selectedLetter);
-  }, [selectedLetter, revealPuzzleTiles]);
-
-  useEffect(() => {
-    //set --columns as property to create dynamic column through Grid
     if (rootRef.current) {
-      rootRef.current.style.setProperty(
-        '--columns',
-        puzzlePhrase.length.toString()
-      );
+      rootRef.current.style.setProperty('--columns', puzzlePhrase.length.toString());
     }
   }, [puzzlePhrase]);
 
@@ -49,14 +26,14 @@ const PuzzleTitle: React.FC<propsType> = ({ selectedLetter, puzzlePhrase }) => {
       <p>{puzzlePhrase}</p>
 
       <div className={classNames(styles.puzzlePhrase)} ref={rootRef}>
-        {puzzleTiles.map((obj, i) => {
+        {puzzleTiles.map((tile, i) => {
           return (
             <div
               className={classNames(styles.puzzleLetterOutline)}
-              data-reveal-letter={obj.revealLetter}
+              data-reveal-letter={tile.revealLetter}
               key={i}
             >
-              {obj.letter}
+              {tile.letter}
             </div>
           );
         })}
