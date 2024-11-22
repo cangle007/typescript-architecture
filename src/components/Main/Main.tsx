@@ -41,15 +41,43 @@ const Main = () => {
     }
   };
 
+  //display the message of the game
+  const displayGameResult = () => {
+    const solvedPuzzle = puzzleTiles.every(
+      (tile) => tile.revealLetter === true
+    );
+
+    if (numOfGuesses === 0) {
+      return 'What a loser 🤮';
+    }
+
+    if (solvedPuzzle) {
+      return 'You WON!! 🏅🚀';
+    }
+
+    return null;
+  };
+
   useEffect(() => {
     revealPuzzleTiles(selectedLetter);
   }, [selectedLetter, revealPuzzleTiles]);
 
   return (
     <div className={classNames(styles.root)}>
-      <h1>Hangman Game</h1>
-      <div className={classNames(styles.winLose)}>LOSE WIN</div>
-      <p>{puzzlePhrase}</p>
+      <div className={classNames(styles.hangmanTitle)}>
+        <span>{'Hangman '}</span>
+        <span>{'Game'}</span>
+      </div>
+
+      <div
+        className={classNames(styles.gameResult, {
+          [styles.animate]: !!displayGameResult(),
+        })}
+      >
+        {displayGameResult()}
+      </div>
+
+      <p>{'puzzle to solve: ' + puzzlePhrase}</p>
       <p>{'Selected letter: ' + selectedLetter}</p>
       <p>{'number of lives: ' + numOfGuesses}</p>
 

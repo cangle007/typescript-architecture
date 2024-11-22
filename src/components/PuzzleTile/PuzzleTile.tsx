@@ -17,14 +17,15 @@ const PuzzleTitle: React.FC<propsType> = ({ puzzlePhrase, puzzleTiles }) => {
   //set --columns as property to create dynamic column through Grid
   useEffect(() => {
     if (rootRef.current) {
-      rootRef.current.style.setProperty('--columns', puzzlePhrase.length.toString());
+      rootRef.current.style.setProperty(
+        '--columns',
+        puzzlePhrase.length.toString()
+      );
     }
   }, [puzzlePhrase]);
 
   return (
     <div className={classNames(styles.root)}>
-      <p>{puzzlePhrase}</p>
-
       <div className={classNames(styles.puzzlePhrase)} ref={rootRef}>
         {puzzleTiles.map((tile, i) => {
           return (

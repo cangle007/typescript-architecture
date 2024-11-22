@@ -9,7 +9,63 @@
   // color: red;
 }
 
-// .winLose {
-//   font-size: '2rem';
-//   text-align: 'center';
-// }
+// #03071e,
+// #370617,
+// #6a040f,
+// #9d0208,
+// #d00000,
+// #dc2f02,
+// #e85d04,
+// #f48c06,
+// #faa307,
+// #ffba08
+
+.hangmanTitle {
+  span {
+    font-size: 75px;
+    line-height: 1.2;
+
+    &:nth-child(2) {
+      font-family: 'SignPainter';
+      font-weight: bold;
+      background: linear-gradient(
+        to right,
+        #03071e,
+        #370617,
+        #6a040f,
+        #9d0208,
+        #d00000,
+        #dc2f02,
+        #e85d04,
+        #f48c06,
+        #faa307,
+        #ffba08
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-rendering: optimizeLegibility;
+      padding: 0.1em;
+    }
+  }
+}
+
+.gameResult {
+  font-size: 50px;
+  text-align: center;
+
+  &.animate {
+    animation: bounceSize 1.5s ease-in-out;
+  }
+}
+
+@keyframes bounceSize {
+  0% {
+    font-size: 15px;
+  }
+  50% {
+    font-size: 70px;
+  }
+  100% {
+    font-size: 50px;
+  }
+}
