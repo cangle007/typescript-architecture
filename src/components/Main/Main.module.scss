@@ -1,33 +1,32 @@
 .root {
   display: grid;
-  // grid-template-columns: 1fr;
-  // grid-template-rows: auto;
-  height: 100vh; /* Make the container fill the entire viewport height */
+  height: 100vh;
   border: 1px solid;
   justify-items: center;
   align-items: center;
-  // color: red;
 }
 
-// #03071e,
-// #370617,
-// #6a040f,
-// #9d0208,
-// #d00000,
-// #dc2f02,
-// #e85d04,
-// #f48c06,
-// #faa307,
-// #ffba08
-
 .hangmanTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  background: linear-gradient(
+    to right,
+    #0d1b2a,
+    #1b263b,
+    #415a77,
+    #778da9,
+    #e0e1dd
+  );
+
   span {
-    font-size: 75px;
+    font-size: 80px;
     line-height: 1.2;
 
     &:nth-child(2) {
-      font-family: 'SignPainter';
-      font-weight: bold;
+      // font-family: 'SignPainter', sans-serif;
       background: linear-gradient(
         to right,
         #03071e,
