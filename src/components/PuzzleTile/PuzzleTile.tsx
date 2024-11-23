@@ -5,6 +5,7 @@ import styles from './PuzzleTile.module.scss';
 type propsType = {
   puzzlePhrase: string;
   puzzleTiles: {
+    phrase: string;
     letter: string;
     revealLetter: boolean;
   }[];

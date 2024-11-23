@@ -8,7 +8,6 @@
   grid-template-columns: repeat(var(--columns), 1fr);
   place-items: center;
   text-align: center;
-  border-bottom: 2px solid red;
   font-size: 50px;
   padding: 10px;
 }
@@ -20,6 +19,7 @@
   color: white;
 
   &[data-reveal-letter='true'] {
-    color: red; // Color when data-has-letter is true
+    color: red;
+    font-family: 'Montserrat', sans-serif;
   }
 }
