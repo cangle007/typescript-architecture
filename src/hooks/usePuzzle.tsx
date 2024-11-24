@@ -1,5 +1,4 @@
 import { useState, useCallback } from 'react';
-//import { generatePhrase } from '../utils/generateWord';
 
 type puzzleTilesType = {
   phrase: string;
@@ -7,14 +6,14 @@ type puzzleTilesType = {
   revealLetter: boolean;
 }[];
 
-const usePuzzle = (generatePhrase: puzzleTilesType) => {
-  const phrase: string = generatePhrase[0].phrase;
+const usePuzzle = (phraseDetails: puzzleTilesType) => {
+  const phrase: string = phraseDetails[0].phrase;
+
   //generate puzzle phrase for player to solve
   const [puzzlePhrase, setPuzzlePhrase] = useState(phrase);
 
-  //initialize details for puzzle phrase
-  const [puzzleTiles, setPuzzleTile] =
-    useState<puzzleTilesType>(generatePhrase);
+  //initialize details to puzzle phrase
+  const [puzzleTiles, setPuzzleTile] = useState<puzzleTilesType>(phraseDetails);
 
   //update puzzleTiles object
   const updatePuzzleTiles = useCallback((selectedLetter: string) => {
@@ -29,6 +28,7 @@ const usePuzzle = (generatePhrase: puzzleTilesType) => {
 
   return {
     puzzlePhrase,
+    setPuzzlePhrase,
     puzzleTiles,
     setPuzzleTile,
     updatePuzzleTiles,

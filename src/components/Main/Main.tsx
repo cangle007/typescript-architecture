@@ -4,6 +4,7 @@ import styles from './Main.module.scss';
 import words from '../../data/words.json' assert { type: 'json' };
 import { generatePhrase } from '../../utils/generateWord';
 import usePuzzle from '../../hooks/usePuzzle';
+import useNewGame from '../../hooks/useNewGame';
 
 import HangmanDrawing from '../HangmanDrawing/HangmanDrawing';
 import PuzzleTile from '../PuzzleTile/PuzzleTile';
@@ -11,32 +12,29 @@ import Keyboard from '../Keyboard/Keyboard';
 
 type clickType = string;
 type guessesType = number;
-
-type puzzleTilesType = {
-  phrase: string;
-  letter: string;
-  revealLetter: boolean;
-}[];
-
 const ATTEMPT: number = 6;
 
 const Main = () => {
   /*set a letter when user clicked on a keyboard*/
   const [selectedLetter, setLetter] = useState<clickType>('');
-
-  /*keep track num of guesses*/
   const [numOfGuesses, setGuess] = useState<guessesType>(0);
 
-  /*
-    Codes below are for PuzzleTile.tsx Component
-  */
-  const { puzzlePhrase, puzzleTiles, updatePuzzleTiles } = usePuzzle(
-    generatePhrase(words)
+  const {
+    puzzlePhrase,
+    puzzleTiles,
+    updatePuzzleTiles,
+    setPuzzlePhrase,
+    setPuzzleTile,
+  } = usePuzzle(generatePhrase(words));
+
+  const { startNewGame } = useNewGame(
+    generatePhrase(words),
+    setPuzzlePhrase,
+    setPuzzleTile,
+    numOfGuesses,
+    setGuess
   );
 
-  /*
-    Codes below are for Keyboard.tsx Component
-  */
   /*update selectedLetter & numOfGuesses*/
   const handleLetterAndGuess = (letterValue: string) => {
     if (numOfGuesses < ATTEMPT) {
@@ -70,11 +68,6 @@ const Main = () => {
     return null;
   };
 
-  const startNewGame = () => {
-    setGuess(0); //reset num of guesses
-    //setPuzzlePhrase(generatePhrase(words)); //create new puzzle to solve
-  };
-
   useEffect(() => {
     updatePuzzleTiles(selectedLetter);
   }, [selectedLetter, updatePuzzleTiles]);
@@ -95,6 +88,7 @@ const Main = () => {
       </div>
 
       <button
+        className={classNames(styles.startBtn)}
         onClick={() => {
           startNewGame();
         }}
@@ -102,16 +96,17 @@ const Main = () => {
         START NEW GAME
       </button>
 
-      <p>{'puzzle to solve: ' + puzzlePhrase}</p>
+      {/* <p>{'puzzle to solve: ' + puzzlePhrase}</p>
       <p>{'Selected letter: ' + selectedLetter}</p>
-      <p>{'number of lives: ' + numOfGuesses}</p>
+      <p>{'number of lives: ' + numOfGuesses}</p> */}
 
       <HangmanDrawing numOfGuesses={numOfGuesses} />
-      <PuzzleTile puzzlePhrase={puzzlePhrase} puzzleTiles={puzzleTiles} />
-      <Keyboard
-        setLetter={setLetter}
-        handleLetterAndGuess={handleLetterAndGuess}
+      <PuzzleTile
+        puzzlePhrase={puzzlePhrase}
+        puzzleTiles={puzzleTiles}
+        numOfGuesses={numOfGuesses}
       />
+      <Keyboard handleLetterAndGuess={handleLetterAndGuess} />
     </div>
   );
 };

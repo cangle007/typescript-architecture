@@ -1,8 +1,3 @@
-// import { useState } from 'react';
-// import classNames from 'classnames';
-// import styles from './HangmanDrawing.module.scss';
-// import PARTS from '../../utils/hangmanBody';
-
 type propsType = {
   numOfGuesses: number;
 };

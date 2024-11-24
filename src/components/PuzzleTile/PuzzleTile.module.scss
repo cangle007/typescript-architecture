@@ -16,10 +16,10 @@
   height: 50px;
   width: 50px;
   border-bottom: 5px solid black;
-  color: white;
+  color: red;
 
   &[data-reveal-letter='true'] {
-    color: red;
     font-family: 'Montserrat', sans-serif;
+    color: #0077b6;
   }
 }

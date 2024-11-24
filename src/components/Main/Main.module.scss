@@ -1,17 +1,16 @@
 .root {
   display: grid;
   height: 100vh;
-  border: 1px solid;
   justify-items: center;
   align-items: center;
 }
 
 .hangmanTitle {
   font-family: 'Montserrat', sans-serif;
-  font-size: 50px;
+  font-size: 70px;
   text-align: center;
   color: white;
-  padding: 20px;
+  padding: 10px;
   background: linear-gradient(
     to right,
     #0d1b2a,
@@ -22,7 +21,6 @@
   );
 
   span {
-    font-size: 80px;
     line-height: 1.2;
 
     &:nth-child(2) {
@@ -46,6 +44,11 @@
       padding: 0.1em;
     }
   }
+}
+
+.startBtn {
+  padding: 10px;
+  margin: 20px;
 }
 
 .gameResult {
