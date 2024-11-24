@@ -12,7 +12,7 @@ import Keyboard from '../Keyboard/Keyboard';
 
 type clickType = string;
 type guessesType = number;
-const ATTEMPT: number = 6;
+const MAX_ATTEMPT: number = 6;
 
 const Main = () => {
   /*set a letter when user clicked on a keyboard*/
@@ -37,13 +37,13 @@ const Main = () => {
 
   /*update selectedLetter & numOfGuesses*/
   const handleLetterAndGuess = (letterValue: string) => {
-    if (numOfGuesses < ATTEMPT) {
+    if (numOfGuesses < MAX_ATTEMPT) {
       setLetter(letterValue);
     }
 
     //player has 6 guesses
     if (
-      numOfGuesses < ATTEMPT &&
+      numOfGuesses < MAX_ATTEMPT &&
       letterValue &&
       !puzzlePhrase.includes(letterValue)
     ) {
@@ -57,7 +57,7 @@ const Main = () => {
       (tile) => tile.revealLetter === true
     );
 
-    if (numOfGuesses === ATTEMPT) {
+    if (numOfGuesses === MAX_ATTEMPT) {
       return 'You lost, what a loser 🤮';
     }
 
@@ -105,6 +105,7 @@ const Main = () => {
         puzzlePhrase={puzzlePhrase}
         puzzleTiles={puzzleTiles}
         numOfGuesses={numOfGuesses}
+        MAX_ATTEMPT={MAX_ATTEMPT}
       />
       <Keyboard handleLetterAndGuess={handleLetterAndGuess} />
     </div>

@@ -10,12 +10,14 @@ type propsType = {
     revealLetter: boolean;
   }[];
   numOfGuesses: number;
+  MAX_ATTEMPT: number;
 };
 
 const PuzzleTitle: React.FC<propsType> = ({
   puzzlePhrase,
   puzzleTiles,
   numOfGuesses,
+  MAX_ATTEMPT,
 }) => {
   //update CSS custom properties dynamically
   const rootRef = useRef<HTMLDivElement>(null);
@@ -40,7 +42,9 @@ const PuzzleTitle: React.FC<propsType> = ({
               data-reveal-letter={tile.revealLetter}
               key={i}
             >
-              {tile.revealLetter || numOfGuesses === 6 ? tile.letter : ''}
+              {tile.revealLetter || numOfGuesses === MAX_ATTEMPT
+                ? tile.letter
+                : ''}
             </div>
           );
         })}
